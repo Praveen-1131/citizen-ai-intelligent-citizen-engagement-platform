@@ -1,0 +1,47 @@
+{% extends "base.html" %} {# Inherit from the base template #}
+
+{% block title %}Dashboard{% endblock %} {# Set page title #}
+
+{% block head %}
+    <!-- Chart.js library for rendering dynamic graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow-xl rounded-2xl p-6 md:p-8 border border-blue-200">
+    <h1 class="text-4xl font-extrabold text-center text-purple-700 mb-8 tracking-tight">
+        Dynamic Dashboard <span class="text-purple-500">–</span> Citizen Insights
+    </h1>
+
+    {# This div is a placeholder for client-side JavaScript notifications #}
+    <div class="flash-messages mb-4 space-y-2"></div> 
+
+    <section class="mb-10 p-6 bg-white rounded-xl shadow-lg border border-gray-100">
+        <h2 class="text-2xl font-bold text-gray-700 mb-4 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-purple-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            Overall Citizen Sentiment & Trends
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            {# Card to display total interactions #}
+            <div class="bg-purple-50 p-6 rounded-lg border border-purple-200 text-center">
+                <h3 class="font-semibold text-lg text-purple-700 mb-2">Total Interactions</h3>
+                {# The content of this span will be updated by dashboard_script.js #}
+                <p id="total-interactions" class="text-5xl font-bold text-purple-900 animate-pulse">...</p>
+            </div>
+            {# Card to display sentiment breakdown chart #}
+            <div class="bg-purple-50 p-6 rounded-lg border border-purple-200">
+                <h3 class="font-semibold text-lg text-purple-700 mb-2 text-center">Sentiment Breakdown</h3>
+                {# Canvas element where Chart.js will draw the pie chart #}
+                <canvas id="sentimentChart"></canvas>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{# Include the JavaScript file specific to dashboard charting logic #}
+<script src="{{ url_for('static', filename='dashboard_script.js') }}"></script>
+{% endblock %}
