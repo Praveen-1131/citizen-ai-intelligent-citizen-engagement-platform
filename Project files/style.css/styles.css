@@ -1,0 +1,40 @@
+/* ==============================================================================
+   static/style.css
+   Global styles and Tailwind CSS overrides for Citizen AI Platform.
+   Ensures consistent typography, transitions, and animations across the site.
+   ============================================================================== */
+
+/* Apply Inter font family and Antialiased rendering globally for better text clarity */
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom fade-in animation for dynamic content, like AI responses */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Basic styling for disabled buttons to provide visual feedback */
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Custom focus states for input fields, text areas, and buttons for accessibility and UX */
+input:focus, textarea:focus, button:focus {
+    outline: none; /* Remove default browser outline */
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4); /* Custom indigo-400 focus ring */
+    border-color: transparent; /* Clear border to let shadow define the focus */
+}
+
+/* Ensure images are responsive and do not overflow their containers */
+img {
+    max-width: 100%;
+    height: auto;
+}
