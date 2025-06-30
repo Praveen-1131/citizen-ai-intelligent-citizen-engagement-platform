@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-center min-h-[calc(100vh-16rem)]"> {# Adjust height to center content effectively #}
+    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-md border border-blue-200">
+        <h2 class="text-3xl font-bold text-center text-indigo-700 mb-6">Login to Citizen AI</h2>
+        
+        {# Form for submitting login credentials to the Flask backend #}
+        <form method="POST" action="{{ url_for('login') }}">
+            <div class="mb-4">
+                <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username:</label>
+                <input type="text" id="username" name="username" required
+                       class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition duration-200"
+                       value="{{ request.form.username if request.form.username }}"> {# Pre-fills username if form submission failed #}
+            </div>
+            <div class="mb-6">
+                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password:</label>
+                <input type="password" id="password" name="password" required
+                       class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition duration-200">
+            </div>
+            <button type="submit"
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg w-full transition duration-300 ease-in-out transform hover:scale-105 shadow-md">
+                Log In
+            </button>
+        </form>
+        <p class="text-center text-gray-600 text-sm mt-4">
+            Don't have an account? <a href="{{ url_for('register') }}" class="text-indigo-600 hover:underline">Register here</a>.
+        </p>
+    </div>
+</div>
+{% endblock %}
